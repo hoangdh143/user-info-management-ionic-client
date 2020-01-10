@@ -1,7 +1,7 @@
 import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
+import {Redirect, Route} from 'react-router-dom';
+import {IonApp, IonRouterOutlet} from '@ionic/react';
+import {IonReactRouter} from '@ionic/react-router';
 import Home from './pages/Home';
 
 /* Core CSS required for Ionic components to work properly */
@@ -23,8 +23,9 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import config from "./config";
-import { withAuthenticator } from 'aws-amplify-react'; // or 'aws-amplify-react-native';
+import {withAuthenticator} from 'aws-amplify-react'; // or 'aws-amplify-react-native';
 import Amplify from 'aws-amplify';
+import {oAuthSignInButton} from "@aws-amplify/ui";
 
 const oauth = {
     domain: config.authentication.oauth_domain,
@@ -60,14 +61,26 @@ Amplify.configure({
 });
 
 const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route path="/home" component={Home} exact={true} />
-        <Route exact path="/" render={() => <Redirect to="/home" />} />
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
+    <IonApp>
+        <IonReactRouter>
+            <IonRouterOutlet>
+                <Route path="/home" component={Home} exact={true}/>
+                <Route exact path="/" render={() => <Redirect to="/home"/>}/>
+            </IonRouterOutlet>
+        </IonReactRouter>
+    </IonApp>
 );
 
-export default withAuthenticator(App);
+const MyTheme = {
+    googleSignInButton: { backgroundColor: "red", borderColor: "red" },
+    oAuthSignInButton: {display: "none"},
+    button: {backgroundColor: "green", borderColor: "red"},
+    signInButtonIcon: {display: "none"}
+};
+
+const federated = {
+    google_client_id: config.social_login.google_client_id,
+    facebook_app_id: config.social_login.facebook_app_id,
+};
+
+export default withAuthenticator(App, false, [], federated, MyTheme);

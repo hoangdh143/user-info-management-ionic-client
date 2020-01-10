@@ -1,5 +1,6 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import React from 'react';
+import {Auth} from "aws-amplify";
 
 const Home: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const Home: React.FC = () => {
           </a>{' '}
           will be your guide.
         </p>
+          <button onClick={() => {Auth.signOut()}}>Sign Out</button>
       </IonContent>
     </IonPage>
   );

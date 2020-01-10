@@ -17,6 +17,10 @@ const dev = {
     authentication: {
         redirect_url: process.env.REACT_APP_REDIRECT_URL || 'http://localhost:3000',
         oauth_domain: 'dev-user-pool.auth.ap-southeast-1.amazoncognito.com',
+    },
+    social_login: {
+        google_client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+        facebook_app_id: process.env.REACT_APP_FACEBOOK_APP_ID,
     }
 };
 
@@ -39,6 +43,10 @@ const prod = {
     authentication: {
         redirect_url: process.env.REDIRECT_URL,
         oauth_domain: 'dev-user-pool.auth.ap-southeast-1.amazoncognito.com',
+    },
+    social_login: {
+        google_client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+        facebook_app_id: process.env.REACT_APP_FACEBOOK_APP_ID,
     }
 };
 
