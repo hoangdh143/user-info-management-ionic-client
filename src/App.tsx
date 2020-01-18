@@ -1,5 +1,5 @@
 import React from 'react';
-import {Redirect, Route} from 'react-router-dom';
+import {Redirect, Route, Router, Switch} from 'react-router-dom';
 import {IonApp, IonRouterOutlet} from '@ionic/react';
 import {IonReactRouter} from '@ionic/react-router';
 import Home from './pages/Home';
@@ -26,6 +26,18 @@ import config from "./config";
 import {withAuthenticator} from 'aws-amplify-react'; // or 'aws-amplify-react-native';
 import Amplify from 'aws-amplify';
 import {oAuthSignInButton} from "@aws-amplify/ui";
+import theme from "./theme";
+import Routes from "./Routes";
+import {createBrowserHistory} from "history";
+// @ts-ignore
+import { Chart } from 'react-chartjs-2';
+import { ThemeProvider } from '@material-ui/styles';
+import validate from 'validate.js';
+
+import { chartjs } from './helpers';
+import 'react-perfect-scrollbar/dist/css/styles.css';
+import './assets/scss/index.scss';
+import validators from './common/validators';
 
 const oauth = {
     domain: config.authentication.oauth_domain,
@@ -60,12 +72,28 @@ Amplify.configure({
     oauth
 });
 
+const browserHistory = createBrowserHistory();
+
+Chart.helpers.extend(Chart.elements.Rectangle.prototype, {
+    draw: chartjs.draw
+});
+
+validate.validators = {
+    ...validate.validators,
+    ...validators
+};
+
 const App: React.FC = () => (
     <IonApp>
         <IonReactRouter>
             <IonRouterOutlet>
-                <Route path="/home" component={Home} exact={true}/>
-                <Route exact path="/" render={() => <Redirect to="/home"/>}/>
+                {/*<ThemeProvider theme={theme}>*/}
+                {/*    <Router history={browserHistory}>*/}
+                {/*        <Routes />*/}
+                {/*    </Router>*/}
+                {/*</ThemeProvider>*/}
+                {/*<Route path="/home" component={Home} exact={true}/>*/}
+                {/*<Route exact path="/" render={() => <Redirect to="/home"/>}/>*/}
             </IonRouterOutlet>
         </IonReactRouter>
     </IonApp>

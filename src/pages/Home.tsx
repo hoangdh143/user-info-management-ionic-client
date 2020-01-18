@@ -1,6 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import React from 'react';
 import {Auth} from "aws-amplify";
+import {Button} from "@material-ui/core";
 
 const Home: React.FC = () => {
   return (
@@ -20,6 +21,9 @@ const Home: React.FC = () => {
           will be your guide.
         </p>
           <button onClick={() => {Auth.signOut()}}>Sign Out</button>
+          <Button variant="contained" color="primary">
+              Hello World
+          </Button>
       </IonContent>
     </IonPage>
   );
