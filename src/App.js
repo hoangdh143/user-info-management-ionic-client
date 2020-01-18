@@ -25,9 +25,7 @@ import './theme/variables.css';
 import config from "./config";
 import {withAuthenticator} from 'aws-amplify-react'; // or 'aws-amplify-react-native';
 import Amplify from 'aws-amplify';
-import {oAuthSignInButton} from "@aws-amplify/ui";
 import theme from "./theme";
-import Routes from "./Routes";
 import {createBrowserHistory} from "history";
 // @ts-ignore
 import { Chart } from 'react-chartjs-2';
@@ -38,6 +36,15 @@ import { chartjs } from './helpers';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import './assets/scss/index.scss';
 import validators from './common/validators';
+import {RouteWithLayout} from "./components";
+import {
+    Account as AccountView,
+    Dashboard as DashboardView, Icons as IconsView, NotFound as NotFoundView,
+    ProductList as ProductListView, Settings as SettingsView, SignIn as SignInView, SignUp as SignUpView,
+    Typography as TypographyView,
+    UserList as UserListView
+} from "./views";
+import {Main as MainLayout, Minimal as MinimalLayout} from "./layouts";
 
 const oauth = {
     domain: config.authentication.oauth_domain,
@@ -83,18 +90,90 @@ validate.validators = {
     ...validators
 };
 
-const App: React.FC = () => (
+const withLayout = Component => () => {
+    return (
+        <MainLayout>
+            <Component/>
+        </MainLayout>
+    );
+}
+
+const App = () => (
     <IonApp>
         <IonReactRouter>
+            <ThemeProvider theme={theme}>
             <IonRouterOutlet>
-                {/*<ThemeProvider theme={theme}>*/}
-                {/*    <Router history={browserHistory}>*/}
-                {/*        <Routes />*/}
-                {/*    </Router>*/}
-                {/*</ThemeProvider>*/}
-                {/*<Route path="/home" component={Home} exact={true}/>*/}
-                {/*<Route exact path="/" render={() => <Redirect to="/home"/>}/>*/}
+                    {/*<Router history={browserHistory}>*/}
+                    {/*    <Routes />*/}
+                    {/*</Router>*/}
+                <Route path="/home" component={withLayout(Home)} exact={true}/>
+                <Redirect
+                    exact
+                    from="/"
+                    to="/dashboard"
+                />
+                <RouteWithLayout
+                    component={DashboardView}
+                    exact
+                    layout={MainLayout}
+                    path="/dashboard"
+                />
+                <RouteWithLayout
+                    component={UserListView}
+                    exact
+                    layout={MainLayout}
+                    path="/users"
+                />
+                <RouteWithLayout
+                    component={ProductListView}
+                    exact
+                    layout={MainLayout}
+                    path="/products"
+                />
+                <RouteWithLayout
+                    component={TypographyView}
+                    exact
+                    layout={MainLayout}
+                    path="/typography"
+                />
+                <RouteWithLayout
+                    component={IconsView}
+                    exact
+                    layout={MainLayout}
+                    path="/icons"
+                />
+                <RouteWithLayout
+                    component={AccountView}
+                    exact
+                    layout={MainLayout}
+                    path="/account"
+                />
+                <RouteWithLayout
+                    component={SettingsView}
+                    exact
+                    layout={MainLayout}
+                    path="/settings"
+                />
+                <RouteWithLayout
+                    component={SignUpView}
+                    exact
+                    layout={MinimalLayout}
+                    path="/sign-up"
+                />
+                <RouteWithLayout
+                    component={SignInView}
+                    exact
+                    layout={MinimalLayout}
+                    path="/sign-in"
+                />
+                <RouteWithLayout
+                    component={NotFoundView}
+                    exact
+                    layout={MinimalLayout}
+                    path="/not-found"
+                />
             </IonRouterOutlet>
+            </ThemeProvider>
         </IonReactRouter>
     </IonApp>
 );
