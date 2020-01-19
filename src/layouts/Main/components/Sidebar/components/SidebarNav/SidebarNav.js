@@ -6,7 +6,8 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/styles';
 import {List, ListItem, Button, colors} from '@material-ui/core';
-import {IonRouterLink} from "@ionic/react";
+import {IonItem, IonRouterLink} from "@ionic/react";
+import {browserHistory} from "../../../../../../App";
 
 const useStyles = makeStyles(theme => ({
     root: {},
@@ -55,6 +56,10 @@ const SidebarNav = props => {
 
     const classes = useStyles();
 
+    function handleNavigation(url) {
+        browserHistory.push(url);
+    }
+
     return (
         <List
             {...rest}
@@ -66,19 +71,17 @@ const SidebarNav = props => {
                     disableGutters
                     key={page.title}
                 >
-                    <IonRouterLink href={page.href}
-                                   style={{flexGrow: 1}}
-                    >
                         <Button
                             activeClassName={classes.active}
                             className={classes.button}
+                            style={{flexGrow: 1}}
+                            onClick={() => handleNavigation(page.href)}
                             // component={CustomRouterLink}
                             // to={page.href}
                         >
                             <div className={classes.icon}>{page.icon}</div>
                             {page.title}
                         </Button>
-                    </IonRouterLink>
                 </ListItem>
             ))}
         </List>

@@ -79,7 +79,7 @@ Amplify.configure({
     oauth
 });
 
-const browserHistory = createBrowserHistory();
+export const browserHistory = createBrowserHistory();
 
 Chart.helpers.extend(Chart.elements.Rectangle.prototype, {
     draw: chartjs.draw
@@ -100,7 +100,7 @@ const withLayout = Component => () => {
 
 const App = () => (
     <IonApp>
-        <IonReactRouter>
+        <Router history={browserHistory}>
             <ThemeProvider theme={theme}>
             <IonRouterOutlet>
                     {/*<Router history={browserHistory}>*/}
@@ -174,7 +174,7 @@ const App = () => (
                 />
             </IonRouterOutlet>
             </ThemeProvider>
-        </IonReactRouter>
+        </Router>
     </IonApp>
 );
 
