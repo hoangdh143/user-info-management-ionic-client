@@ -1,6 +1,16 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import {
+    IonButton,
+    IonContent,
+    IonHeader,
+    IonPage,
+    IonRouterLink,
+    IonTitle,
+    IonToolbar
+} from '@ionic/react';
 import React from 'react';
 import {Auth} from "aws-amplify";
+import {Button} from "@material-ui/core";
+import {Link} from "react-router-dom";
 
 const Home: React.FC = () => {
   return (
@@ -20,6 +30,12 @@ const Home: React.FC = () => {
           will be your guide.
         </p>
           <button onClick={() => {Auth.signOut()}}>Sign Out</button>
+          <Button variant="contained" color="primary">
+              Hello World
+          </Button>
+          <Link to="/dashboard">Dashboard</Link>
+          <IonButton href="/dashboard">Dashboard</IonButton>
+          <IonRouterLink href="/dashboard">Dashboard 2</IonRouterLink>
       </IonContent>
     </IonPage>
   );
