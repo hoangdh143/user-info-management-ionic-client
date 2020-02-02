@@ -1,5 +1,6 @@
 import React, { createContext, useReducer } from "react";
 import {CREATE_USER, failure, GET_USER_LIST, success} from "./constants";
+import {useActions} from "./useActions";
 
 let AppContext = createContext();
 
@@ -26,7 +27,8 @@ function AppContextProvider(props) {
     }
 
     let [state, dispatch] = useReducer(reducer, fullInitialState);
-    let value = { state, dispatch };
+    const makeAction = useActions(dispatch);
+    let value = { state, makeAction };
 
 
     return (
