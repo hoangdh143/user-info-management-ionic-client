@@ -46,6 +46,7 @@ import {
 } from "./views";
 import {Main as MainLayout, Minimal as MinimalLayout} from "./layouts";
 import {AppContextProvider} from "./store/State";
+import NewUser from "./views/NewUser";
 
 const oauth = {
     domain: config.authentication.oauth_domain,
@@ -126,6 +127,13 @@ const App = () => (
                     layout={MainLayout}
                     path="/users"
                 />
+                <RouteWithLayout
+                component={NewUser}
+                exact
+                layout={MainLayout}
+                path="/new_user"
+            />
+
                 <RouteWithLayout
                     component={ProductListView}
                     exact

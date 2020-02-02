@@ -1,4 +1,5 @@
 import React, {useContext} from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
@@ -34,12 +35,6 @@ const UsersToolbar = props => {
   console.log(state);
 
   const classes = useStyles();
-  function addUser() {
-    dispatch({
-      type: 'setCount',
-      count: state.count + 1,
-    });
-  }
 
   return (
     <div
@@ -50,13 +45,14 @@ const UsersToolbar = props => {
         <span className={classes.spacer} />
         <Button className={classes.importButton}>Import</Button>
         <Button className={classes.exportButton}>Export</Button>
+        <RouterLink to="/new_user">
         <Button
           color="primary"
           variant="contained"
-          onClick={addUser}
         >
           Add user
         </Button>
+        </RouterLink>
       </div>
       <div className={classes.row}>
         <SearchInput
