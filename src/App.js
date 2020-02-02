@@ -45,6 +45,7 @@ import {
     UserList as UserListView
 } from "./views";
 import {Main as MainLayout, Minimal as MinimalLayout} from "./layouts";
+import {AppContextProvider} from "./store/State";
 
 const oauth = {
     domain: config.authentication.oauth_domain,
@@ -100,6 +101,7 @@ const withLayout = Component => () => {
 
 const App = () => (
     <IonApp>
+        <AppContextProvider>
         <Router history={browserHistory}>
             <ThemeProvider theme={theme}>
             <IonRouterOutlet>
@@ -175,6 +177,7 @@ const App = () => (
             </IonRouterOutlet>
             </ThemeProvider>
         </Router>
+        </AppContextProvider>
     </IonApp>
 );
 

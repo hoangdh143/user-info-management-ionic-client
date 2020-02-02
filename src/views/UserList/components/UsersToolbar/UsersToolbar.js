@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import { Button } from '@material-ui/core';
 import SearchInput from "../../../../components/SearchInput";
+import {AppContext} from "../../../../store/State";
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -29,8 +30,16 @@ const useStyles = makeStyles(theme => ({
 
 const UsersToolbar = props => {
   const { className, ...rest } = props;
+  const { state, dispatch } = useContext(AppContext);
+  console.log(state);
 
   const classes = useStyles();
+  function addUser() {
+    dispatch({
+      type: 'setCount',
+      count: state.count + 1,
+    });
+  }
 
   return (
     <div
@@ -44,6 +53,7 @@ const UsersToolbar = props => {
         <Button
           color="primary"
           variant="contained"
+          onClick={addUser}
         >
           Add user
         </Button>

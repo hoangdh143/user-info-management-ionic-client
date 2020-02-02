@@ -72,7 +72,7 @@ const SidebarNav = props => {
                     key={page.title}
                 >
                         <Button
-                            activeClassName={classes.active}
+                            // activeClassName={classes.active}
                             className={classes.button}
                             style={{flexGrow: 1}}
                             onClick={() => handleNavigation(page.href)}
