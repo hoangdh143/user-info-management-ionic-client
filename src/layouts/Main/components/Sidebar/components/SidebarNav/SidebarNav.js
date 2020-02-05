@@ -52,6 +52,7 @@ const useStyles = makeStyles(theme => ({
 // ));
 
 const SidebarNav = props => {
+    const path = window.location.pathname;
     const {pages, className, ...rest} = props;
 
     const classes = useStyles();
@@ -72,8 +73,8 @@ const SidebarNav = props => {
                     key={page.title}
                 >
                         <Button
-                            // activeClassName={classes.active}
-                            className={classes.button}
+                            // activeclassname={classes.active}
+                            className={path === page.href ? `${classes.button} ${classes.active}` : classes.button}
                             style={{flexGrow: 1}}
                             onClick={() => handleNavigation(page.href)}
                             // component={CustomRouterLink}

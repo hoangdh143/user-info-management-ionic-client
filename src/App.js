@@ -28,11 +28,11 @@ import Amplify from 'aws-amplify';
 import theme from "./theme";
 import {createBrowserHistory} from "history";
 // @ts-ignore
-import { Chart } from 'react-chartjs-2';
-import { ThemeProvider } from '@material-ui/styles';
+import {Chart} from 'react-chartjs-2';
+import {ThemeProvider} from '@material-ui/styles';
 import validate from 'validate.js';
 
-import { chartjs } from './helpers';
+import {chartjs} from './helpers';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import './assets/scss/index.scss';
 import validators from './common/validators';
@@ -47,6 +47,8 @@ import {
 import {Main as MainLayout, Minimal as MinimalLayout} from "./layouts";
 import {AppContextProvider} from "./store/State";
 import NewUser from "./views/NewUser";
+import CheckInList from "./views/Check-in";
+import ReviewList from "./views/ReviewList";
 
 const oauth = {
     domain: config.authentication.oauth_domain,
@@ -103,94 +105,106 @@ const withLayout = Component => () => {
 const App = () => (
     <IonApp>
         <AppContextProvider>
-        <Router history={browserHistory}>
-            <ThemeProvider theme={theme}>
-            <IonRouterOutlet>
-                    {/*<Router history={browserHistory}>*/}
-                    {/*    <Routes />*/}
-                    {/*</Router>*/}
-                <Route path="/home" component={withLayout(Home)} exact={true}/>
-                <Redirect
-                    exact
-                    from="/"
-                    to="/dashboard"
-                />
-                <RouteWithLayout
-                    component={DashboardView}
-                    exact
-                    layout={MainLayout}
-                    path="/dashboard"
-                />
-                <RouteWithLayout
-                    component={UserListView}
-                    exact
-                    layout={MainLayout}
-                    path="/users"
-                />
-                <RouteWithLayout
-                component={NewUser}
-                exact
-                layout={MainLayout}
-                path="/new_user"
-            />
+            <Router history={browserHistory}>
+                <ThemeProvider theme={theme}>
+                    <IonRouterOutlet>
+                        {/*<Router history={browserHistory}>*/}
+                        {/*    <Routes />*/}
+                        {/*</Router>*/}
+                        <Route path="/home" component={withLayout(Home)} exact={true}/>
+                        <Redirect
+                            exact
+                            from="/"
+                            to="/check_in"
+                        />
+                        <RouteWithLayout
+                            component={DashboardView}
+                            exact
+                            layout={MainLayout}
+                            path="/dashboard"
+                        />
+                        <RouteWithLayout
+                            component={CheckInList}
+                            exact
+                            layout={MainLayout}
+                            path="/check_in"
+                        />
+                        <RouteWithLayout
+                            component={UserListView}
+                            exact
+                            layout={MainLayout}
+                            path="/users"
+                        />
+                        <RouteWithLayout
+                            component={NewUser}
+                            exact
+                            layout={MainLayout}
+                            path="/new_user"
+                        />
+                        <RouteWithLayout
+                            component={ReviewList}
+                            exact
+                            layout={MainLayout}
+                            path="/reviews"
+                        />
 
-                <RouteWithLayout
-                    component={ProductListView}
-                    exact
-                    layout={MainLayout}
-                    path="/products"
-                />
-                <RouteWithLayout
-                    component={TypographyView}
-                    exact
-                    layout={MainLayout}
-                    path="/typography"
-                />
-                <RouteWithLayout
-                    component={IconsView}
-                    exact
-                    layout={MainLayout}
-                    path="/icons"
-                />
-                <RouteWithLayout
-                    component={AccountView}
-                    exact
-                    layout={MainLayout}
-                    path="/account"
-                />
-                <RouteWithLayout
-                    component={SettingsView}
-                    exact
-                    layout={MainLayout}
-                    path="/settings"
-                />
-                <RouteWithLayout
-                    component={SignUpView}
-                    exact
-                    layout={MinimalLayout}
-                    path="/sign-up"
-                />
-                <RouteWithLayout
-                    component={SignInView}
-                    exact
-                    layout={MinimalLayout}
-                    path="/sign-in"
-                />
-                <RouteWithLayout
-                    component={NotFoundView}
-                    exact
-                    layout={MinimalLayout}
-                    path="/not-found"
-                />
-            </IonRouterOutlet>
-            </ThemeProvider>
-        </Router>
+                        <RouteWithLayout
+                            component={ProductListView}
+                            exact
+                            layout={MainLayout}
+                            path="/products"
+                        />
+                        <RouteWithLayout
+                            component={TypographyView}
+                            exact
+                            layout={MainLayout}
+                            path="/typography"
+                        />
+                        <RouteWithLayout
+                            component={IconsView}
+                            exact
+                            layout={MainLayout}
+                            path="/icons"
+                        />
+                        <RouteWithLayout
+                            component={AccountView}
+                            exact
+                            layout={MainLayout}
+                            path="/account"
+                        />
+                        <RouteWithLayout
+                            component={SettingsView}
+                            exact
+                            layout={MainLayout}
+                            path="/settings"
+                        />
+                        <RouteWithLayout
+                            component={SignUpView}
+                            exact
+                            layout={MinimalLayout}
+                            path="/sign-up"
+                        />
+                        <RouteWithLayout
+                            component={SignInView}
+                            exact
+                            layout={MinimalLayout}
+                            path="/sign-in"
+                        />
+                        <RouteWithLayout
+                            component={NotFoundView}
+                            exact
+                            layout={MinimalLayout}
+                            path="/not-found"
+                        />
+                    </IonRouterOutlet>
+                </ThemeProvider>
+            </Router>
         </AppContextProvider>
     </IonApp>
 );
 
 const MyTheme = {
-    googleSignInButton: { backgroundColor: "red", borderColor: "red" },
+    googleSignInButton: {backgroundColor: "red", borderColor: "red"},
     oAuthSignInButton: {display: "none"},
     button: {backgroundColor: "green", borderColor: "red"},
     signInButtonIcon: {display: "none"}

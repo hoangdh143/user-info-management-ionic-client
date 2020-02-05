@@ -3,16 +3,18 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Divider, Drawer } from '@material-ui/core';
-import DashboardIcon from '@material-ui/icons/Dashboard';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+// import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import TextFieldsIcon from '@material-ui/icons/TextFields';
-import ImageIcon from '@material-ui/icons/Image';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
+// import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+// import TextFieldsIcon from '@material-ui/icons/TextFields';
+// import ImageIcon from '@material-ui/icons/Image';
+// import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import SettingsIcon from '@material-ui/icons/Settings';
-import LockOpenIcon from '@material-ui/icons/LockOpen';
+// import LockOpenIcon from '@material-ui/icons/LockOpen';
+import RateReviewIcon from '@material-ui/icons/RateReview';
 
-import { Profile, SidebarNav, UpgradePlan } from './components';
+import { SidebarNav } from './components';
 
 const useStyles = makeStyles(theme => ({
   drawer: {
@@ -43,10 +45,15 @@ const Sidebar = props => {
   const classes = useStyles();
 
   const pages = [
+    // {
+    //   title: 'Dashboard',
+    //   href: '/dashboard',
+    //   icon: <DashboardIcon />
+    // },
     {
-      title: 'Dashboard',
-      href: '/dashboard',
-      icon: <DashboardIcon />
+      title: 'Check-in',
+      href: '/check_in',
+      icon: <CheckBoxIcon />
     },
     {
       title: 'Users',
@@ -54,30 +61,35 @@ const Sidebar = props => {
       icon: <PeopleIcon />
     },
     {
-      title: 'Products',
-      href: '/products',
-      icon: <ShoppingBasketIcon />
+      title: 'Reviews',
+      href: '/reviews',
+      icon: <RateReviewIcon />
     },
-    {
-      title: 'Authentication',
-      href: '/sign-in',
-      icon: <LockOpenIcon />
-    },
-    {
-      title: 'Typography',
-      href: '/typography',
-      icon: <TextFieldsIcon />
-    },
-    {
-      title: 'Icons',
-      href: '/icons',
-      icon: <ImageIcon />
-    },
-    {
-      title: 'Account',
-      href: '/account',
-      icon: <AccountBoxIcon />
-    },
+    // {
+    //   title: 'Products',
+    //   href: '/products',
+    //   icon: <ShoppingBasketIcon />
+    // },
+    // {
+    //   title: 'Authentication',
+    //   href: '/sign-in',
+    //   icon: <LockOpenIcon />
+    // },
+    // {
+    //   title: 'Typography',
+    //   href: '/typography',
+    //   icon: <TextFieldsIcon />
+    // },
+    // {
+    //   title: 'Icons',
+    //   href: '/icons',
+    //   icon: <ImageIcon />
+    // },
+    // {
+    //   title: 'Account',
+    //   href: '/account',
+    //   icon: <AccountBoxIcon />
+    // },
     {
       title: 'Settings',
       href: '/settings',
@@ -97,13 +109,13 @@ const Sidebar = props => {
         {...rest}
         className={clsx(classes.root, className)}
       >
-        <Profile />
+        {/*<Profile />*/}
         <Divider className={classes.divider} />
         <SidebarNav
           className={classes.nav}
           pages={pages}
         />
-        <UpgradePlan />
+        {/*<UpgradePlan />*/}
       </div>
     </Drawer>
   );
