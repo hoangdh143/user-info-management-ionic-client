@@ -34,7 +34,7 @@ const Topbar = props => {
       className={clsx(classes.root, className)}
     >
       <Toolbar>
-        <RouterLink to="/">
+        <RouterLink to="/check_in">
           <img
             alt="Logo"
             src="/images/logos/logo--white.svg"
