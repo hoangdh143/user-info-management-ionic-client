@@ -56,7 +56,7 @@ const Sidebar = props => {
       icon: <CheckBoxIcon />
     },
     {
-      title: 'Users',
+      title: 'Customers',
       href: '/users',
       icon: <PeopleIcon />
     },

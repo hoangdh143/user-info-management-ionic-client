@@ -14,6 +14,7 @@ import {
   Typography,
   Button
 } from '@material-ui/core';
+import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -101,7 +102,7 @@ const Notifications = props => {
                 gutterBottom
                 variant="h6"
               >
-                Messages
+                Birthday Messages
               </Typography>
               <FormControlLabel
                 control={
@@ -110,21 +111,29 @@ const Notifications = props => {
                     defaultChecked //
                   />
                 }
-                label="Email"
+                label="Auto-send"
               />
-              <FormControlLabel
-                control={<Checkbox color="primary" />}
-                label="Push Notifications"
+              <TextField
+                  id="outlined-multiline-static"
+                  label="Message Template"
+                  multiline
+                  rows="4"
+                  defaultValue=""
+                  variant="outlined"
               />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    color="primary"
-                    defaultChecked //
-                  />
-                }
-                label="Phone calls"
-              />
+              {/*<FormControlLabel*/}
+              {/*  control={<Checkbox color="primary" />}*/}
+              {/*  label="Push Notifications"*/}
+              {/*/>*/}
+              {/*<FormControlLabel*/}
+              {/*  control={*/}
+              {/*    <Checkbox*/}
+              {/*      color="primary"*/}
+              {/*      defaultChecked //*/}
+              {/*    />*/}
+              {/*  }*/}
+              {/*  label="Phone calls"*/}
+              {/*/>*/}
             </Grid>
           </Grid>
         </CardContent>

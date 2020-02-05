@@ -50,7 +50,7 @@ const UsersToolbar = props => {
           color="primary"
           variant="contained"
         >
-          Add user
+          Add Customer
         </Button>
         </RouterLink>
       </div>
